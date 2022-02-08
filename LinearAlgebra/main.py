@@ -107,18 +107,19 @@ def fractify(matrix):
 
 
 def determinant(matrix):
-    return matrix[0][0] if len(matrix) == 1 else sum([(-1) ** r * matrix[r][0] * determinant([[matrix[i][j] for j in range(len(matrix)) if j != 0] for i in range(len(matrix)) if i != r]) for r in range(len(matrix))])
+    return matrix[0][0] if len(matrix) == 1 else sum((-1) ** r * matrix[r][0] * determinant([[matrix[i][j] for j in range(len(matrix)) if j != 0] for i in range(len(matrix)) if i != r]) for r in range(len(matrix)))
 
-
-"""m = [
+"""
+m = [
     [1, 2, 1, 0],
     [0, 3, 1, 1],
     [-1, 0, 3, 1],
     [3, 1, 2, 0]
-]"""
+]
 
+print(determinant(m))
+"""
 
-# print(laplace(m))
 
 def gauss_eliminate(matrix):
     fractify(matrix)
@@ -150,3 +151,33 @@ m = [
 # print(2 - n1)
 
 print(7/3)
+
+
+"""
+Ax^2 + Bx + C = D
+
+
+[[1 - 1 + 1]
+ [0 + 0 + 1]
+ [1 + 1 + 1]
+ [4 + 2 + 1]]
+
+[[1 + 1 + 1 + 1]    [[1 - 1 + 1]     [[1 + 1 + 1 + 1]  [[1]
+ [-1 + 0 + 1 + 2]    [0 + 0 + 1]  =   [-1 + 0 + 1 + 2]  [0]
+ [1 + 0 + 1 + 4]]    [1 + 1 + 1]      [1 + 0 + 1 + 4]]  [1]
+                     [4 + 2 + 1]]                       [8]]
+                     
+[6 2 3  |  ]
+[8 6 2  |  ]
+[18 8 6 |  ]
+
+
+"""
+
+m = [
+    [9, -3, 1, 2],
+    [9, 3, 1, -1],
+    [25, 5, 1, 5]
+]
+
+[print([str(col) for col in row]) for row in gauss_eliminate(m)]
